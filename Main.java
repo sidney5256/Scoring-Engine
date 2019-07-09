@@ -1,21 +1,55 @@
 package com.company;
 
-public class Main {
+public class scoringEngine
+{
+        private int contactId;
+        private String event;
+        private int score;
+
+        public scoringEngine(int contactId, String event, int score) {
+            super();
+            this.contactId = contactId;
+            this.event = event;
+            this.score = score;
+        }
+
+        public int getContactId() {
+            return contactId;
+        }
+        public void setContactId(int contactId) {
+            this.contactId = contactId;
+        }
+        public String getEvent() {
+            return event;
+        }
+        public void setEvent(String event) {
+            this.event = event;
+        }
+        public String getScore() {
+            return score;
+        }
+        public void setScore(String score) {
+            this.score = score;
+        }
+
+        @Override
+        public String toString() {
+            return "Score [contactID=" + contactId + ", event=" + event
+                    + ", score=" + score + "]";
+        }
 
     public static void main(String[] args) {
         //Delimiters used in the CSV file
-        private static final String COMMA_DELIMITER = ",";
+        String COMMA_DELIMITER = ",";
 
-        public static void main(String args[])
-        {
             BufferedReader br = null;
             try
             {
                 //Reading the csv file
-                br = new BufferedReader(new FileReader("Employee.csv"));
+                br = new BufferedReader(new FileReader("\Users\Sidney Elie-Pierre\Desktop"));
 
                 //Create List for holding Score objects
-                List<Scores> scoreList = new ArrayList<Scores>();
+                List<Scores> interactions = new ArrayList<Scores>();
 
                 String line = "";
                 //Read to skip the header
@@ -28,22 +62,17 @@ public class Main {
                     if(retrieveScores.length > 0 )
                     {
                         //Save the score details in Score object
-                        Scores score = new Scores(Integer.parseInt(retrieveScores[0]),
-                                retrieveScores[1],
-                                Integer.parseInt(retrieveScores[2]));
-                        scoreList.add(score);
+                        Scores score = new Scores(retrieveScores[0],
+                                retrieveScores[1], retrieveScores[2]);
+                        interactions.add(score);
                     }
                 }
 
+
                 //Lets print the Score List
-                double web = 1.0;
-                double email = 1.2;
-                double social = 1.5;
-                double webinar = 2.0;
-                for(Scores e : scoreList)
+                for(Scores e : interactions)
                 {
-                    System.out.println(e.getContactId()+"   "+e.getEvent()+"   "
-                            +e.getScore());
+                    System.out.println(e.getContactId()+"   "+e.getEvent()+"   "+e.getScore());
 
                     if(e.getEvent() == "web") {
                         scoreList(e) *= web;
@@ -65,14 +94,16 @@ public class Main {
                         scoreList(e) = 0;
                     }
                 }
+                //Not sure what I am trying to do here
                 int counter = 0;
-                for(Scores e : scoreList)
-                {
-                    counter+=e.getContactId();
+                for(Scores e : scoreList) {
+                    //Summing the scores for contactId 1
+                    if (e == 1) {
+                        score +=
+                        counter += e.getContactId();
+                    }
                 }
 
-
-                }
 
 
             }
